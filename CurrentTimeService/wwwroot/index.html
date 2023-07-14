@@ -7,10 +7,13 @@
 <body>
     <h2 id="myheader"></h2>
     <script>
-        fetch("/datetime").then(response => response.text()).then(data => {
+        async function getCurrentDateTime() {
+            const response = await fetch("/datetime");
+            const dateTimeString = await response.text();
             const myHeader = document.getElementById("myheader");
-            myHeader.textContent = data;
-        }).catch(error => console.error(error));
+            myHeader.textContent = dateTimeString;
+        }
+        getCurrentDateTime().catch(error => console.error(error));
     </script>
 </body>
 </html>

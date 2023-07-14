@@ -3,10 +3,10 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.MapGet("/datetime", async context =>
+app.MapGet("/datetime", () =>
 {
     DateTimeOffset currentDateTimeOffset = DateTimeOffset.Now;
     string currentDateTime = currentDateTimeOffset.ToString("yyyy-MM-dd HH:mm:ss zzz");
-    await context.Response.WriteAsync(currentDateTime);
+    return Results.Text(currentDateTime, "text/plain");
 });
 app.Run();
